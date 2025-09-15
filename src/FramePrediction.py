@@ -245,7 +245,6 @@ class NextFramePredictionModel(nn.Module):
         # Output conv
         x = self.out(x)
         
-        # Take the last predicted frame
-        x = x[:, :, -1, :, :]  # (B, C, H, W)
+        x = x.permute(0, 2, 1, 3, 4)
 
-        return torch.sigmoid(x)
+        return x
